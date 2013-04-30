@@ -1,5 +1,5 @@
 #SimpleTimeBar 
-is a programmatic, event-driven implementation of a "timebar". Similar to a progress-bar, but with time as the input. Think indicating to the user that enough time has passed. 
+is a programmatic, event-driven implementation of a "timebar", licensed under the GNU Public License (GPL) version 3. Similar to a progress-bar, but with time as the input. Think indicating to the user that enough time has passed. 
 ##Requirements:
 1. jQuery is a requirement, and must be included prior to instantiation of any SimpleTimeBar objects.
 
@@ -21,3 +21,6 @@ called upon the SimpleTimeBar's internal time matching the end time that it was 
 
 5. failure
  called if .stop() was called sometime before completion
+
+##License:
+GPL v3, as stated in the repository file LICENSE
