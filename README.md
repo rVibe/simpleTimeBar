@@ -1,11 +1,13 @@
-SimpleTimeBar is a programmatic, event-driven implementation of a "timebar". Similar to a progress-bar, but with time as the input. Think indicating to the user that enough time has passed. 
-Requirements:
+#SimpleTimeBar 
+is a programmatic, event-driven implementation of a "timebar". Similar to a progress-bar, but with time as the input. Think indicating to the user that enough time has passed. 
+##Requirements:
 1. jQuery is a requirement, and must be included prior to instantiation of any SimpleTimeBar objects.
 
-Intended use:
+##Intended use:
+
 1. Initially developed to function alongside Twitter Bootstrap, which provides an excellent 'progress-bar' component. 
 
-Events:
+##Events:
 all events also have a corresponding 'before' and 'after' action, e.g. 'beforeStart' or 'afterStop'
 
 1. start
