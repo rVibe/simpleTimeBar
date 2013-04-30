@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="./simpleTimeBar.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="row-fluid">
+
+      <div class='span5 offset5'>
+        <h1>SimpleTimeBar</h1>
+      </div>
+      <div class="span5 offset4">
+      <div class="hero-unit">
+        <div style="display: none" class="alert alert-success" id="completed">
+          Completed!
+        </div>
+        Count to 10
+        <div class="progress">
+          <div class="bar" style="width: 0%"></div>
+        </div>
+        Seconds elapsed: <span id="time"></span>
+      </div>
+    </div>
+    </div>
+
+
+  </body>
+</html>
+<script>
+  var thisTimeBar = new SimpleTimeBar(10, {}); 
+  thisTimeBar.$.on("update", function(ev, time, val) {
+    //this event, when triggered, will change the width of the element
+    $("#time").text(time);
+    console.log(val);
+    $(".bar").css({width: val});
+
+  });
+  thisTimeBar.$.on("end", function(ev, val) {
+    //this event is triggered on completion of the progress bar
+
+    $(".bar").remove();
+
+
+  });
+
+  thisTimeBar.$.on("complete", function(ev, data_object) {
+    $("#completed").show();
+
+  })
+
+  $(document).ready(function() {
+    thisTimeBar.begin();
+  });
+
+</script>
