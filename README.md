@@ -1,6 +1,9 @@
 #SimpleTimeBar 
 is a programmatic, event-driven implementation of a "timebar", licensed under the GNU Public License (GPL) version 3. Similar to a progress-bar, but with time as the input. Think indicating to the user that enough time has passed. 
+#Demo:
+[Demo](http://htmlpreview.github.io/?https://github.com/rVibe/simpleTimeBar/blob/master/example.html)
 ##Requirements:
+
 1. jQuery is a requirement, and must be included prior to instantiation of any SimpleTimeBar objects.
 
 ##Intended use:
