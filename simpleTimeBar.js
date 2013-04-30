@@ -11,15 +11,15 @@ function SimpleTimeBar( end_time, data_object) {
   var that = this;
   this._update = function() {
     //"private" function that is called every time the time-state is updated
-    this.$.trigger('beforeUpdate', this.percentage());
-    this.$.trigger('update', this.percentage());
-    this.$.trigger('afterUpdate', this.percentage());
+    this.$.trigger('beforeUpdate', [this.time, this.percentage()]);
+    this.$.trigger('update', [this.time, this.percentage()]);
+    this.$.trigger('afterUpdate', [this.time,  this.percentage()]);
 
   }
   this.ratio = function() {
     //intended to compute the ratio of completion
     var rat;
-    if (!_.isUndefined(this.end_time)) {
+    if (!(typeof this.end_time == "undefined")) {
       if (this.time >= this.end_time) {
         rat = 1;
       } else {
@@ -60,7 +60,7 @@ function SimpleTimeBar( end_time, data_object) {
     this.$.trigger('afterStop');
   }
   this.complete = function() {
-    return this.time == this.end_time;
+    return this.ratio() == 1
 
   }
   this.reset = function () {
@@ -69,22 +69,40 @@ function SimpleTimeBar( end_time, data_object) {
     this.end_time = 0;
     this.start_time = 0;
     this.data_object = null;
-    that = null; //remove circular reference
 
   }
-  this.start = function() {
-    this.$.trigger('beforeStart');
+  this.begin = function() {
+    this._start();
+
+  }
+  this._start = function() {
+    that.$.trigger('beforeStart');
 
     that.timer = setInterval(function() {
       console.log("ticking");
       that.time = that.time + 1;
-      if (that.complete()) {
-        that._stop()
+      try {
+        if (that.complete()) {
+          that._update();
+          that._stop()
 
-      } else {
-        that._update();
+        } else {
+          that._update();
+        }
+      } catch(err) {   
+        console.log("Error occurred");
+        console.log(err)
+
       }
     }, 1000);
+
+    try {
+      that.$.trigger('start');
+      that.$.trigger('afterStart');
+    } catch(err) {
+      console.log("error", err);
+
+    }
 
   }
 
